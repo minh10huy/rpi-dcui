@@ -1,0 +1,10 @@
+version: "3"
+services:
+  dccomposeui:
+    image: lowet84/docker-compose-ui-rpi
+    restart: always
+    volumes:
+      - /home/pirate/docker:/opt/docker-compose-projects
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - '15000:5000'
