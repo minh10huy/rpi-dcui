@@ -1,9 +1,9 @@
-version: "2"
+version: "3"
 
 services:
     docker_compose_ui:
         restart: always
-        image: dccomposeui:latest
+        image: dccomposeui:1.8.1
         container_name: docker_compose_ui
         hostname: docker_compose_ui
         working_dir: /opt/docker-compose-projects/
@@ -12,23 +12,25 @@ services:
         #working_dir: /home/user/docker-compose-ui/demo-projects
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
-            - /home/pirate/docker/:/opt/docker-compose-projects/
-    web_console:
-        image: bitbull/docker-exec-web-console
-        environment:
-        - 'CONTEXT_PATH=/web-console/'
-        read_only: true
-        restart: always
-        volumes:
-        - /var/run/docker.sock:/var/run/docker.sock
-    nginx:
-        image: tobi312/rpi-nginx:alpine
-#        read_only: true
-        restart: always
+            - /opt/docker/docker-compose:/opt/docker-compose-projects/
         ports:
-          - 10080:80
-        volumes:
-          - /home/pirate/docker/rpi-dcui/default.conf:/etc/nginx/conf.d/default.conf:ro
-          - /var/cache/nginx/
-          - /var/run/
-          - /logs/
+            - 15000:5000
+#    web_console:
+#        image: bitbull/docker-exec-web-console
+#        environment:
+#        - 'CONTEXT_PATH=/web-console/'
+#        read_only: true
+#        restart: always
+#        volumes:
+#        - /var/run/docker.sock:/var/run/docker.sock
+#    nginx:
+#        image: tobi312/rpi-nginx:alpine
+#        read_only: true
+#        restart: always
+#        ports:
+#          - 10080:80
+#        volumes:
+#          - /home/pirate/docker/rpi-dcui/default.conf:/etc/nginx/conf.d/default.conf:ro
+#          - /var/cache/nginx/
+#          - /var/run/
+#          - /logs/
