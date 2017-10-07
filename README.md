@@ -15,11 +15,11 @@ The application can be deployed as a single container, there are no dependencies
 
 docker-compose build -t dccomposeui01 .
 
-# Run with docker-compose
+## Run with docker-compose
 
 docker-compose up -d
 
-# Run with swarm
+## Run with swarm
 
 docker stack deploy -c docker-compose.yml dccomposeui01
 
